@@ -33,7 +33,7 @@
 
 ### MacOS
 
-- [NewBingClient-0.0.1-darwin-x64.dmg](https://github.com/le0zh/NewBingClient/releases/download/v0.0.1/NewBingClient-0.0.1-darwin-x64.dmgs) (Intel chips)
+- [NewBingClient-0.0.1-darwin-x64.dmg](https://github.com/le0zh/NewBingClient/releases/download/0.0.1/NewBingClient-0.0.1-darwin-x64.dmg) (Intel chips)
 
 ### Windows
 
