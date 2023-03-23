@@ -20,12 +20,14 @@
 
 - [x] Chat with new Bing without installing Microsoft Edge or browser plugins
 - [x] Support for multiple sessions
-- [] Export sessions as Markdown, PDF, or PNG files.
-- [] Customizable session titles.
+- [ ] Export sessions as Markdown, PDF, or PNG files.
+- [ ] Customizable session titles.
 
 ## Screenshot
 
-<img width="601" src="./screenshot.png" alt="NewBingClient Screenshot">
+<p align="center">
+  <img width="600" src="./screenshot.png" alt="NewBingClient Screenshot">
+</p>
 
 ## Install
 
@@ -35,7 +37,7 @@
 
 ### Windows
 
-comming soon
+> comming soon
 
 ## Usage
 
