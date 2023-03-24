@@ -7,7 +7,7 @@
 
 // define bing base url
 #define BING_BASE_URL \
-  "https://edgeservices.bing.com/edgediscover/query?&darkschemeovr=1&FORM=SHORUN&udscs=1&udsnav=1&setlang=${locale}&features=udssydinternal&clientscopes=windowheader,coauthor,chat,&udsframed=1"
+  "https://edgeservices.bing.com/edgediscover/query?&%1schemeovr=1&FORM=SHORUN&udscs=1&udsnav=1&setlang=${locale}&features=udssydinternal&clientscopes=windowheader,coauthor,chat,&udsframed=1"
 
 // define normal style for menu item
 #define MENU_ITEM_STYLE_NORMAL \
@@ -39,12 +39,13 @@ void MainWindow::newTopic() {
     it.value().menu->setStyleSheet(MENU_ITEM_STYLE_NORMAL);
   }
 
-  CefViewWidget* view = new CefViewWidget(BING_BASE_URL, nullptr, this);
+  auto bing_url = QString(BING_BASE_URL).arg(is_dark_mode_ ? "dark" : "light");
+  CefViewWidget* view = new CefViewWidget(bing_url, nullptr, this);
 
-  connect(view, &QCefView::addressChanged, this, [view](qint64 frameId, const QString& url) {
+  connect(view, &QCefView::addressChanged, this, [view, bing_url](qint64 frameId, const QString& url) {
     Q_UNUSED(frameId);
     if (url.startsWith("https://edgeservices.bing.com/edgesvc/urlredirect")) {
-      view->navigateToUrl(BING_BASE_URL);
+      view->navigateToUrl(bing_url);
     }
   });
 
@@ -152,8 +153,12 @@ void MainWindow::setupUI() {
   QWidget* side_bar = new QWidget(this);
   side_bar->setObjectName("SideBar");
   side_bar->setFixedWidth(240);
-  side_bar->setStyleSheet("#SideBar{background-color: #22252A; border-right: 1px solid #5b5b5b;}");
-
+  if(is_dark_mode_) {
+    side_bar->setStyleSheet("#SideBar{background-color:#22252A; border-right: 1px solid #5b5b5b;}");
+  } else {
+    side_bar->setStyleSheet("#SideBar{background-color:#1A2B3C; border-right: 1px solid #5b5b5b;}");
+  }
+  
   DLabel* new_topic_btn = new DLabel(this);
   new_topic_btn->setObjectName("NewButton");
   new_topic_btn->setFixedSize(200, 48);
@@ -204,6 +209,9 @@ void MainWindow::setupUI() {
   main_layout->addWidget(stacked_widget_);
 
   central_widget->setLayout(main_layout);
+
+  // set min size
+  this->setMinimumSize(900, 600);
 
   // set window size
   resize(900, 600);

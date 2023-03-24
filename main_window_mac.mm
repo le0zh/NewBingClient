@@ -9,4 +9,10 @@ void MainWindow::setupWindow() {
     [window setTitle: @""];
     window.movableByWindowBackground = true;
     window.styleMask |= NSWindowStyleMaskFullSizeContentView;
+
+    if (@available(macOS 10.14, *)) {
+        NSAppearance *appearance = [NSApp effectiveAppearance];
+        NSAppearanceName appearanceName = appearance.name;
+        is_dark_mode_ = appearanceName == NSAppearanceNameDarkAqua || appearanceName == NSAppearanceNameAccessibilityHighContrastDarkAqua;
+    }
 }

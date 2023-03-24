@@ -31,6 +31,8 @@ class MainWindow : public QMainWindow {
   int topic_selected_ = 0;
   int topic_index_ = 0;
 
+  bool is_dark_mode_ = false;
+
   DLabel* remove_topic_btn_;
   QVBoxLayout* side_bar_layout_;
   QMap<int, TopicEntity> topics;
