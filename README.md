@@ -33,11 +33,12 @@
 
 ### MacOS
 
-- [NewBingClient-0.0.1-darwin-x64.dmg](https://github.com/le0zh/NewBingClient/releases/download/0.0.1/NewBingClient-0.0.1-darwin-x64.dmg) (Intel chips)
+- [NewBingClient-0.0.2-darwin-arm64.dmg](https://github.com/le0zh/NewBingClient/releases/download/0.0.2/NewBingClient-0.0.2-darwin-arm64.dmg) (Apple Silicon)
+- [NewBingClient-0.0.2-darwin-x64.dmg](https://github.com/le0zh/NewBingClient/releases/download/0.0.1/NewBingClient-0.0.2-darwin-x64.dmg) (Intel chips)
 
 ### Windows
 
-> comming soon
+- [NewBingClient-0.0.2-windows-x64-portable.zip](https://github.com/le0zh/NewBingClient/releases/download/0.0.2/NewBingClient-0.0.2-windows-x64-portable.zip) (Portable)
 
 ## Usage
 
