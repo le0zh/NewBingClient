@@ -151,9 +151,11 @@ void MainWindow::removeTopic(int key) {
   }
 }
 
+#ifndef Q_OS_MACOS
 void MainWindow::setupWindow() {
   setWindowIcon(QIcon(":/images/assets/icon.ico"));
 }
+#endif
 
 void MainWindow::setupUI() {
   QWidget* central_widget = new QWidget(this);
