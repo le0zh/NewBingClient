@@ -29,10 +29,6 @@
   <img width="600" src="./screenshots/mac.png" alt="NewBingClient MacOS Screenshot">
 </p>
 
-<p align="center">
-  <img width="600" src="./screenshots/windows.png" alt="NewBingClient MacOS Screenshot">
-</p>
-
 ## Install
 
 ### MacOS
