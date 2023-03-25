@@ -2,4 +2,7 @@
     <qresource prefix="/js">
         <file>preload.js</file>
     </qresource>
+    <qresource prefix="/images">
+        <file>assets/icon.ico</file>
+    </qresource>
 </RCC>

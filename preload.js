@@ -36,7 +36,7 @@ function adjust_style() {
     const insightsTab = document.getElementById('insights');
 
     if (headerWrapper) {
-      headerWrapper.style.cssText = 'height: 40px';
+        headerWrapper.style.cssText = 'height: 40px';
     }
 
     if (tabWrapper) {

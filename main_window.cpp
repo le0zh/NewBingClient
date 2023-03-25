@@ -42,12 +42,13 @@ void MainWindow::newTopic() {
   auto bing_url = QString(BING_BASE_URL).arg(is_dark_mode_ ? "dark" : "light");
   CefViewWidget* view = new CefViewWidget(bing_url, nullptr, this);
 
-  connect(view, &QCefView::addressChanged, this, [view, bing_url](qint64 frameId, const QString& url) {
-    Q_UNUSED(frameId);
-    if (url.startsWith("https://edgeservices.bing.com/edgesvc/urlredirect")) {
-      view->navigateToUrl(bing_url);
-    }
-  });
+  connect(view, &QCefView::addressChanged, this,
+          [view, bing_url](qint64 frameId, const QString& url) {
+            Q_UNUSED(frameId);
+            if (url.startsWith("https://edgeservices.bing.com/edgesvc/urlredirect")) {
+              view->navigateToUrl(bing_url);
+            }
+          });
 
   connect(view, &QCefView::loadEnd, this,
           [view](int browserId, qint64 frameId, bool isMainFrame, int httpStatusCode) {
@@ -76,7 +77,10 @@ void MainWindow::newTopic() {
 
   side_bar_layout_->insertWidget(2, menu);
 
-  TopicEntity topic_entity = {.title = title, .view = view, .menu = menu};
+  TopicEntity topic_entity;
+  topic_entity.title = title;
+  topic_entity.view = view;
+  topic_entity.menu = menu;
 
   this->topics.insert(topic_index_, topic_entity);
 
@@ -147,18 +151,23 @@ void MainWindow::removeTopic(int key) {
   }
 }
 
+void MainWindow::setupWindow() {
+  setWindowIcon(QIcon(":/images/assets/icon.ico"));
+}
+
 void MainWindow::setupUI() {
   QWidget* central_widget = new QWidget(this);
 
   QWidget* side_bar = new QWidget(this);
   side_bar->setObjectName("SideBar");
   side_bar->setFixedWidth(240);
-  if(is_dark_mode_) {
+  if (is_dark_mode_) {
     side_bar->setStyleSheet("#SideBar{background-color:#22252A; border-right: 1px solid #5b5b5b;}");
-  } else {
+  }
+  else {
     side_bar->setStyleSheet("#SideBar{background-color:#1A2B3C; border-right: 1px solid #5b5b5b;}");
   }
-  
+
   DLabel* new_topic_btn = new DLabel(this);
   new_topic_btn->setObjectName("NewButton");
   new_topic_btn->setFixedSize(200, 48);
@@ -202,7 +211,13 @@ void MainWindow::setupUI() {
   stacked_widget_ = new QStackedWidget(this);
 
   QHBoxLayout* main_layout = new QHBoxLayout();
+
+#ifdef Q_OS_WINDOWS
+  main_layout->setContentsMargins(0, 1, 0, 0);
+#else
   main_layout->setContentsMargins(0, 0, 0, 0);
+#endif
+
   main_layout->setSpacing(0);
 
   main_layout->addWidget(side_bar);

@@ -3,9 +3,14 @@
 
 .DS_Store
 
-bin/mac*
+debug/*
+release/*
+bin/*
 lib/mac_x86_64
 lib/mac_arm64
+lib/windows_x64
+
+*.vcxproj.user
 
 .vscode
 
